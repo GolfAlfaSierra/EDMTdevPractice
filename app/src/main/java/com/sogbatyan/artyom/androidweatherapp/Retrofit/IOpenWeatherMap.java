@@ -8,8 +8,8 @@ import retrofit2.http.Query;
 
 public interface IOpenWeatherMap {
     @GET("weather")
-    Observable<WeatherResult> getWeaatherByLatLng(@Query("lat") String lat,
-                                                  @Query("lng") String lng,
-                                                  @Query("appid") String appid,
-                                                  @Query("units") String unit);
+    Observable<WeatherResult> getWeatheByLatLng(@Query("lat") String lat,
+                                                @Query("lon") String lng,
+                                                @Query("appid") String appid,
+                                                @Query("units") String unit);
 }

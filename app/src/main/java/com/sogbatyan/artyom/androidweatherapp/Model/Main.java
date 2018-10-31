@@ -1,6 +1,6 @@
 package com.sogbatyan.artyom.androidweatherapp.Model;
 
-class Main {
+public class Main {
     private double temp;
     private double pressure;
     private int humidity;

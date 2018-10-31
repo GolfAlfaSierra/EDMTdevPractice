@@ -1,6 +1,6 @@
 package com.sogbatyan.artyom.androidweatherapp.Model;
 
-class Sys {
+public class Sys {
     private double message;
     private String country;
     private int sunrise;
