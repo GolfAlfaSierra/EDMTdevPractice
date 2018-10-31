@@ -1,6 +1,6 @@
 package com.sogbatyan.artyom.androidweatherapp.Model;
 
-class Coord {
+public class Coord {
     private double lon;
     private double lat;
 

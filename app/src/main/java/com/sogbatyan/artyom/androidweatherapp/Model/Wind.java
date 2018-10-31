@@ -1,6 +1,6 @@
 package com.sogbatyan.artyom.androidweatherapp.Model;
 
-class Wind {
+public class Wind {
     private double speed;
     private double deg;
 

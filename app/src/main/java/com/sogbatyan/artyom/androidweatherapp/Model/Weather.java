@@ -1,6 +1,6 @@
 package com.sogbatyan.artyom.androidweatherapp.Model;
 
-class Weather {
+public class Weather {
     private int id;
     private String main;
     private String description;

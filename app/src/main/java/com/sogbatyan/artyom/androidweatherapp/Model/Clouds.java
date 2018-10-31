@@ -1,6 +1,6 @@
 package com.sogbatyan.artyom.androidweatherapp.Model;
 
-class Clouds {
+public class Clouds {
     private int all;
 
     public Clouds() {
