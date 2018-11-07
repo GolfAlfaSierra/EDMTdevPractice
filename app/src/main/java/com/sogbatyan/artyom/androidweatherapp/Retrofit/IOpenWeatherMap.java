@@ -1,5 +1,6 @@
 package com.sogbatyan.artyom.androidweatherapp.Retrofit;
 
+import com.sogbatyan.artyom.androidweatherapp.Model.WeatherForecastResult;
 import com.sogbatyan.artyom.androidweatherapp.Model.WeatherResult;
 
 import io.reactivex.Observable;
@@ -12,4 +13,9 @@ public interface IOpenWeatherMap {
                                                 @Query("lon") String lng,
                                                 @Query("appid") String appid,
                                                 @Query("units") String unit);
+    @GET("forecast")
+    Observable<WeatherForecastResult> getForecastWeatheByLatLng(@Query("lat") String lat,
+                                                                @Query("lon") String lng,
+                                                                @Query("appid") String appid,
+                                                                @Query("units") String unit);
 }
