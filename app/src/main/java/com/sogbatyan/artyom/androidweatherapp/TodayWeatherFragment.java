@@ -25,9 +25,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class TodayWeatherFragment extends Fragment {
 
     ImageView img_weather;
@@ -134,6 +132,12 @@ public class TodayWeatherFragment extends Fragment {
                     }
                 })
         );
+    }
+
+    @Override
+    public void onStop() {
+        compositeDisposable.clear();
+        super.onStop();
     }
 
 }
