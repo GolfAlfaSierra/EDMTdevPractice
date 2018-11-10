@@ -5,5 +5,4 @@ public class City {
     public String name;
     public Coord coord;
     public String country;
-    public int population;
 }
