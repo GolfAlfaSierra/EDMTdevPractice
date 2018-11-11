@@ -3,7 +3,6 @@ package com.sogbatyan.artyom.androidweatherapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,13 +17,11 @@ import com.sogbatyan.artyom.androidweatherapp.Model.WeatherForecastResult;
 import com.sogbatyan.artyom.androidweatherapp.Retrofit.IOpenWeatherMap;
 import com.sogbatyan.artyom.androidweatherapp.Retrofit.RetrofitClient;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
-
 
 
 /**
@@ -75,6 +72,12 @@ public class ForecastFragment extends Fragment {
     }
 
     @Override
+    public void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+    }
+
+    @Override
     public void onStop() {
         compositeDisposable.clear();
         super.onStop();
@@ -89,13 +92,13 @@ public class ForecastFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<WeatherForecastResult>() {
                     @Override
-                    public void accept(WeatherForecastResult weatherForecastResult) throws Exception {
+                    public void accept(WeatherForecastResult weatherForecastResult) {
                         displayForecastWeather(weatherForecastResult);
 
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void accept(Throwable throwable) {
                         Log.d("ERROR", "" + throwable.getMessage());
                     }
                 })
