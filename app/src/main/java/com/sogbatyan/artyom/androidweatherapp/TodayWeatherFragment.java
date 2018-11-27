@@ -43,7 +43,6 @@ public class TodayWeatherFragment extends Fragment {
             txt_geo_coord;
     ProgressBar loading;
     LinearLayout weather_panel;
-
     CompositeDisposable compositeDisposable;
     IOpenWeatherMap mService;
 
@@ -133,18 +132,6 @@ public class TodayWeatherFragment extends Fragment {
                     }
                 })
         );
-    }
-
-    @Override
-    public void onDestroy() {
-        compositeDisposable.clear();
-        super.onDestroy();
-    }
-
-    @Override
-    public void onStop() {
-        compositeDisposable.clear();
-        super.onStop();
     }
 
 }
