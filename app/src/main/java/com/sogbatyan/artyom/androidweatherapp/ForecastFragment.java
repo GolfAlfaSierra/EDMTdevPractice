@@ -3,7 +3,6 @@ package com.sogbatyan.artyom.androidweatherapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,7 +17,6 @@ import com.sogbatyan.artyom.androidweatherapp.Model.WeatherForecastResult;
 import com.sogbatyan.artyom.androidweatherapp.Retrofit.IOpenWeatherMap;
 import com.sogbatyan.artyom.androidweatherapp.Retrofit.RetrofitClient;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -26,12 +24,10 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ForecastFragment extends Fragment {
-
 
     CompositeDisposable compositeDisposable;
     IOpenWeatherMap mService;
@@ -52,14 +48,12 @@ public class ForecastFragment extends Fragment {
         compositeDisposable = new CompositeDisposable();
         Retrofit retrofit = RetrofitClient.getInstance();
         mService = retrofit.create(IOpenWeatherMap.class);
-
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View itemView = inflater.inflate(R.layout.fragment_forecast, container, false);
 
         txt_city_name = itemView.findViewById(R.id.txt_city_name);
@@ -72,6 +66,18 @@ public class ForecastFragment extends Fragment {
         getForecastWeatherInformation();
 
         return itemView;
+    }
+
+    @Override
+    public void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStop() {
+        compositeDisposable.clear();
+        super.onStop();
     }
 
     private void getForecastWeatherInformation() {
@@ -103,7 +109,6 @@ public class ForecastFragment extends Fragment {
 
         WeatherForecastAdapter adapter = new WeatherForecastAdapter(getContext(), weatherForecastResult);
         recycler_forecast.setAdapter(adapter);
-
     }
 
 }

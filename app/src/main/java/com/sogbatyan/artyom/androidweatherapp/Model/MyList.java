@@ -3,7 +3,6 @@ package com.sogbatyan.artyom.androidweatherapp.Model;
 import java.util.List;
 
 public class MyList {
-
     public int dt ;
     public Main main;
     public List<Weather> weather;
@@ -12,5 +11,4 @@ public class MyList {
     public Rain rain ;
     public Sys sys ;
     public String dt_txt ;
-
 }
