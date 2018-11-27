@@ -25,9 +25,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class TodayWeatherFragment extends Fragment {
 
     ImageView img_weather;
@@ -90,16 +88,18 @@ public class TodayWeatherFragment extends Fragment {
     }
 
     private void getWeatherInformation() {
+
         compositeDisposable.add(mService.getWeatherByLatLng(String.valueOf(Common.current_location.getLatitude()),
                 String.valueOf(Common.current_location.getLongitude()),
                 Common.APP_ID,
                 "metric")
+
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
                 .subscribe(new Consumer<WeatherResult>() {
                     @Override
-                    public void accept(WeatherResult weatherResult) throws Exception {
+                    public void accept(WeatherResult weatherResult) {
 
                         //Load image
                         Picasso.get().load(new StringBuilder("https://openweathermap.org/img/w/")
@@ -108,7 +108,7 @@ public class TodayWeatherFragment extends Fragment {
 
                         txt_city_name.setText(weatherResult.getName());
                         txt_description.setText(new StringBuilder("Weather in ")
-                                .append(weatherResult.getName().toString()));
+                                .append(weatherResult.getName()));
                         txt_temperature.setText(new StringBuilder(String.valueOf(weatherResult.getMain().getTemp())).append("°C").toString());
 
                         txt_date_time.setText(Common.convertUnixToDate(weatherResult.getDt()));
@@ -128,7 +128,7 @@ public class TodayWeatherFragment extends Fragment {
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void accept(Throwable throwable) {
                         Toast.makeText(getActivity(), "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 })
