@@ -17,7 +17,6 @@ import com.sogbatyan.artyom.androidweatherapp.Model.WeatherForecastResult;
 import com.sogbatyan.artyom.androidweatherapp.Retrofit.IOpenWeatherMap;
 import com.sogbatyan.artyom.androidweatherapp.Retrofit.RetrofitClient;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -67,6 +66,18 @@ public class ForecastFragment extends Fragment {
         getForecastWeatherInformation();
 
         return itemView;
+    }
+
+    @Override
+    public void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStop() {
+        compositeDisposable.clear();
+        super.onStop();
     }
 
     private void getForecastWeatherInformation() {
