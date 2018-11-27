@@ -24,10 +24,4 @@ public interface IOpenWeatherMap {
                                                                  @Query("lon") String lng,
                                                                  @Query("appid") String appid,
                                                                  @Query("units") String unit);
-
-    @GET("forecast")
-    Observable<WeatherResult> getWeatherByCityName(@Query("q") String cityName,
-                                                   @Query("appid") String appid,
-                                                   @Query("units") String unit);
-
 }

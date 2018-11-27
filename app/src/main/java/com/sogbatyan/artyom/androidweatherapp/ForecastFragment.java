@@ -29,7 +29,6 @@ import retrofit2.Retrofit;
  */
 public class ForecastFragment extends Fragment {
 
-
     CompositeDisposable compositeDisposable;
     IOpenWeatherMap mService;
 
@@ -49,14 +48,12 @@ public class ForecastFragment extends Fragment {
         compositeDisposable = new CompositeDisposable();
         Retrofit retrofit = RetrofitClient.getInstance();
         mService = retrofit.create(IOpenWeatherMap.class);
-
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View itemView = inflater.inflate(R.layout.fragment_forecast, container, false);
 
         txt_city_name = itemView.findViewById(R.id.txt_city_name);
@@ -92,13 +89,13 @@ public class ForecastFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<WeatherForecastResult>() {
                     @Override
-                    public void accept(WeatherForecastResult weatherForecastResult) {
+                    public void accept(WeatherForecastResult weatherForecastResult) throws Exception {
                         displayForecastWeather(weatherForecastResult);
 
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) {
+                    public void accept(Throwable throwable) throws Exception {
                         Log.d("ERROR", "" + throwable.getMessage());
                     }
                 })
@@ -112,7 +109,6 @@ public class ForecastFragment extends Fragment {
 
         WeatherForecastAdapter adapter = new WeatherForecastAdapter(getContext(), weatherForecastResult);
         recycler_forecast.setAdapter(adapter);
-
     }
 
 }
